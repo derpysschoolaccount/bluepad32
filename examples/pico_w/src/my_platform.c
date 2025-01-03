@@ -79,6 +79,7 @@ static uni_error_t my_platform_on_device_discovered(bd_addr_t addr, const char* 
         logi("Ignoring keyboard\n");
         return UNI_ERROR_IGNORE_DEVICE;
     }
+    printf("wow would you look at that there's a thing found");
 
     return UNI_ERROR_SUCCESS;
 }
@@ -116,6 +117,11 @@ static void my_platform_on_controller_data(uni_hid_device_t* d, uni_controller_t
     switch (ctl->klass) {
         case UNI_CONTROLLER_CLASS_GAMEPAD:
             gp = &ctl->gamepad;
+
+            
+            if (gp->buttons & BUTTON_A) {
+                printf("wow the a button was pressed this is crazy");
+            }
 
             // Debugging
             // Axis ry: control rumble
